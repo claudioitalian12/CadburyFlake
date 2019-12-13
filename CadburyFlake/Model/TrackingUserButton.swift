@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PinLayout
 import RxSwift
 
 protocol TrackingButtonDelegate: MapModel {
@@ -36,7 +35,7 @@ class TrackingUserButton: NSObject {
         trackingUserButton?.setImage(UIImage(named: "navigation"), for: .normal)
         trackingUserButton?.imageView?.contentMode = .scaleAspectFit
         trackingUserButton?.rx.tap
-            .bind { self.centerMapOnUser() }
+         .bind { self.centerMapOnUser() }
          .disposed(by: self.disposeBag)
         
         self.setTrackingUserButton(trackingUserButton: trackingButtonDelegate)
@@ -53,6 +52,6 @@ class TrackingUserButton: NSObject {
     
     private func setTrackingUserViewButton(trackingUserViewButton: TrackingButtonViewDelegate) {
         self.trackingButtonViewDelegate = trackingUserViewButton
-        trackingButtonViewDelegate?.setTrackingUserButton(trackingUserButton: self.trackingUserButton!)
+        self.trackingButtonViewDelegate?.setTrackingUserButton(trackingUserButton: self.trackingUserButton!)
     }
 }

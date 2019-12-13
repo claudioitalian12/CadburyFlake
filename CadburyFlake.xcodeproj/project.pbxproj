@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D076BCF23A3F1590078A6A4 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D076BCE23A3F1590078A6A4 /* SettingsButton.swift */; };
 		5D08A98E239F9AE40049104B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D08A98D239F9AE40049104B /* AppDelegate.swift */; };
 		5D08A990239F9AE40049104B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D08A98F239F9AE40049104B /* SceneDelegate.swift */; };
 		5D08A992239F9AE40049104B /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D08A991239F9AE40049104B /* MapVC.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D076BCE23A3F1590078A6A4 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		5D08A98A239F9AE40049104B /* CadburyFlake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CadburyFlake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D08A98D239F9AE40049104B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D08A98F239F9AE40049104B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 		5D08A9B4239FA2520049104B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5D076BCE23A3F1590078A6A4 /* SettingsButton.swift */,
 				5D08A9BF23A3AF1D0049104B /* TrackingUserButton.swift */,
 				5D08A9B6239FA3BF0049104B /* MapModel.swift */,
 				5D08A9B8239FA59F0049104B /* LocationModel.swift */,
@@ -220,6 +223,7 @@
 				5D08A9BB239FA7370049104B /* MapVC+MapVCDelegate.swift in Sources */,
 				5D08A992239F9AE40049104B /* MapVC.swift in Sources */,
 				5D08A98E239F9AE40049104B /* AppDelegate.swift in Sources */,
+				5D076BCF23A3F1590078A6A4 /* SettingsButton.swift in Sources */,
 				5D08A9C023A3AF1D0049104B /* TrackingUserButton.swift in Sources */,
 				5D08A9A8239F9E1F0049104B /* MapViewCoordinator.swift in Sources */,
 				5D08A9B9239FA59F0049104B /* LocationModel.swift in Sources */,

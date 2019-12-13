@@ -14,16 +14,18 @@ import RxCocoa
 protocol MapVCDelegate: MapVC {
     func setMapView(mapView: MKMapView)
     func setTrackingUserButton(trackingUserButton: UIButton)
+    func setSettingsViewButton(settingsButton: UIButton)
     func createAlertAuthorization(title: String, message: String)
 }
 
-class MapViewModel: MapModelViewModelDelegate, LocationModelDelegate, TrackingButtonViewDelegate {
+class MapViewModel: MapModelViewModelDelegate, LocationModelDelegate, TrackingButtonViewDelegate, SettingsButtonViewDelegate {
        
     let didSettings = PublishSubject<Void>()
     let disposeBag = DisposeBag()
     private var mapModel: MapModel?
     private var locationModel: LocationModel?
     private var trackingUserButton: TrackingUserButton?
+    private var settingsButton: SettingsButton?
     private var setMapView: MapVCDelegate?
     
     init() {
@@ -36,6 +38,10 @@ class MapViewModel: MapModelViewModelDelegate, LocationModelDelegate, TrackingBu
     
      func setTrackingUserButton(trackingUserButton: UIButton) {
         self.setMapView?.setTrackingUserButton(trackingUserButton: trackingUserButton)
+    }
+    
+    private func setSettingsB() {
+        self.settingsButton = SettingsButton(settingsButtonViewDelegate: self)
     }
     
     private func setTrackingUserB() {
@@ -62,8 +68,13 @@ class MapViewModel: MapModelViewModelDelegate, LocationModelDelegate, TrackingBu
         self.setMapView!.createAlertAuthorization(title: title, message: message)
     }
     
+    func setSettingsButtonView(setSettingsButtonView: UIButton) {
+        self.setMapView!.setSettingsViewButton(settingsButton: setSettingsButtonView)
+    }
+    
     func permissionAuthorized() {
         self.setMapModel()
         self.setTrackingUserB()
+        self.setSettingsB()
     }
 }

@@ -13,6 +13,7 @@ protocol Coordinator: AnyObject {
     var parentCoordinator: Coordinator? { get set }
     
     func start()
+    func start(window: UIWindow)
     func start(coordinator: Coordinator)
     func didFinish(coordinator: Coordinator)
 }
@@ -24,7 +25,11 @@ class BaseCoordinator: Coordinator {
     var navigationController = UINavigationController()
     
     func start() {
-        fatalError("Start method must be implemented")
+     
+    }
+    
+    func start(window: UIWindow) {
+        
     }
     
     func start(coordinator: Coordinator) {

@@ -10,29 +10,28 @@ import Foundation
 import UIKit
 import RxSwift
 
-protocol SignInListener {
-    func didSignIn()
+protocol SettingsListener {
+    func didSettings()
 }
 
 class AppCoordinator: BaseCoordinator {
     
-    var window = UIWindow(frame: UIScreen.main.bounds)
+    var window: UIWindow?
     
-    override func start() {
+    override func start(window: UIWindow) {
         self.navigationController.navigationBar.isHidden = true
-        self.window.rootViewController = self.navigationController
-        self.window.makeKeyAndVisible()
-        
-        // TODO: here you could check if user is signed in and show appropriate screen
-        let coordinator = SignInCoordinator()
+        self.window = window
+        self.window?.rootViewController = self.navigationController
+        self.window?.makeKeyAndVisible()
+        let coordinator = MapViewCoordinator()
         coordinator.navigationController = self.navigationController
         self.start(coordinator: coordinator)
     }
 }
 
-extension AppCoordinator: SignInListener {
-    func didSignIn() {
-      //  self.navigationController.showAlert(title: "Success", message: "Signed in")
+extension AppCoordinator: SettingsListener {
+    func didSettings() {
+        //  self.navigationController.showAlert(title: "Success", message: "Signed in")
         // TODO: Navigate to Dashboard
     }
 }

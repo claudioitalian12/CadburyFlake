@@ -9,12 +9,13 @@
 import Foundation
 import CoreLocation
 
-protocol LocationModelDelegate: SignInViewModel {
+protocol LocationModelDelegate: MapViewModel {
     func createAlertAuthorization(title: String, message: String)
     func permissionAuthorized()
 }
 
 class LocationModel: NSObject, CLLocationManagerDelegate {
+    
     private var locationModelDelegate: LocationModelDelegate?
     
     init(locationModelDelegate: LocationModelDelegate) {
@@ -24,20 +25,20 @@ class LocationModel: NSObject, CLLocationManagerDelegate {
     }
     
     func setupLocationPermission() {
-           if CLLocationManager.locationServicesEnabled() {
-               switch CLLocationManager.authorizationStatus() {
-               case .notDetermined:
-                   CLLocationManager().requestAlwaysAuthorization()
-               case .restricted, .denied:
-                   let message = ["MainPro necessita della tua posizione.",
-                                  "Abilita i  servizi di localizzazione nelle impostazioni."]
-                   self.locationModelDelegate?.createAlertAuthorization(title: "Concedi l'accesso alla posizione", message: message.joined())
-               case .authorizedWhenInUse, .authorizedAlways:
-                   self.locationModelDelegate?.permissionAuthorized()
-                   break
-               default: break
-               }
-           }
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+            case .notDetermined:
+                CLLocationManager().requestAlwaysAuthorization()
+            case .restricted, .denied:
+                let message = ["MainPro necessita della tua posizione.",
+                               "Abilita i  servizi di localizzazione nelle impostazioni."]
+                self.locationModelDelegate?.createAlertAuthorization(title: "Concedi l'accesso alla posizione", message: message.joined())
+            case .authorizedWhenInUse, .authorizedAlways:
+                self.locationModelDelegate?.permissionAuthorized()
+                break
+            default: break
+            }
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

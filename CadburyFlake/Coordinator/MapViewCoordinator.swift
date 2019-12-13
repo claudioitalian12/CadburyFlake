@@ -7,27 +7,22 @@
 //
 import RxSwift
 
-class SignInCoordinator: BaseCoordinator {
+class MapViewCoordinator: BaseCoordinator {
     
     private let disposeBag = DisposeBag()
     
     override func start() {
-        let viewController = SignInViewController()
-        // Now Coordinator initializes and injects viewModel
-        let signInViewModel = SignInViewModel()
+        let viewController = MapVC()
+        let signInViewModel = MapViewModel()
         viewController.viewModel = signInViewModel
-        
-        // Coordinator subscribes to events and notifies parentCoordinator
-        signInViewModel.didSignIn
+        signInViewModel.didSettings
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
                 self.navigationController.viewControllers = []
                 self.parentCoordinator?.didFinish(coordinator: self)
-                (self.parentCoordinator as? SignInListener)?.didSignIn()
-                
+                (self.parentCoordinator as? SettingsListener)?.didSettings()
             })
             .disposed(by: self.disposeBag)
-        
         self.navigationController.viewControllers = [viewController]
     }
 }

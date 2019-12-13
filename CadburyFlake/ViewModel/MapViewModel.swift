@@ -11,24 +11,35 @@ import MapKit
 import RxSwift
 import RxCocoa
 
-protocol ViewControllerDelegate: SignInViewController {
+protocol MapVCDelegate: MapVC {
     func setMapView(mapView: MKMapView)
+    func setTrackingUserButton(trackingUserButton: UIButton)
     func createAlertAuthorization(title: String, message: String)
 }
 
-class SignInViewModel: MapModelViewModelDelegate, LocationModelDelegate {
-    let didSignIn = PublishSubject<Void>()
+class MapViewModel: MapModelViewModelDelegate, LocationModelDelegate, TrackingButtonViewDelegate {
+       
+    let didSettings = PublishSubject<Void>()
     let disposeBag = DisposeBag()
     private var mapModel: MapModel?
     private var locationModel: LocationModel?
-    private var setMapView: ViewControllerDelegate?
-
+    private var trackingUserButton: TrackingUserButton?
+    private var setMapView: MapVCDelegate?
+    
     init() {
     }
     
-    init(viewController: ViewControllerDelegate) {
+    init(viewController: MapVCDelegate) {
         self.setMapView = viewController
         setLocationModel()
+    }
+    
+     func setTrackingUserButton(trackingUserButton: UIButton) {
+        self.setMapView?.setTrackingUserButton(trackingUserButton: trackingUserButton)
+    }
+    
+    private func setTrackingUserB() {
+        self.trackingUserButton = TrackingUserButton(trackingButtonDelegate: self.mapModel!, trackingButtonViewDelegate: self)
     }
     
     private func setMapModel() {
@@ -36,11 +47,15 @@ class SignInViewModel: MapModelViewModelDelegate, LocationModelDelegate {
     }
     
     private func setLocationModel() {
-           self.locationModel = LocationModel(locationModelDelegate: self)
+        self.locationModel = LocationModel(locationModelDelegate: self)
     }
     
     func setMapView(mapView: MKMapView) {
         self.setMapView!.setMapView(mapView: mapView)
+    }
+    
+    func setDetailsView(annotationView: MKAnnotationView) {
+        self.createAlertAuthorization(title: annotationView.description, message: annotationView.description)
     }
     
     func createAlertAuthorization(title: String, message: String) {
@@ -49,5 +64,6 @@ class SignInViewModel: MapModelViewModelDelegate, LocationModelDelegate {
     
     func permissionAuthorized() {
         self.setMapModel()
+        self.setTrackingUserB()
     }
 }

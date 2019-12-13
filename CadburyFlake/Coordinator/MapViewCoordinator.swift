@@ -13,9 +13,9 @@ class MapViewCoordinator: BaseCoordinator {
     
     override func start() {
         let viewController = MapVC()
-        let signInViewModel = MapViewModel()
-        viewController.viewModel = signInViewModel
-        signInViewModel.didSettings
+        let mapViewModel = MapViewModel()
+        viewController.viewModel = mapViewModel
+        mapViewModel.didSettings
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
                 self.navigationController.viewControllers = []

@@ -28,7 +28,6 @@ class TrackingUserButton: NSObject {
     init(trackingButtonDelegate: TrackingButtonDelegate, trackingButtonViewDelegate: TrackingButtonViewDelegate) {
         super.init()
         trackingUserButton = UIButton()
-        trackingUserButton?.isUserInteractionEnabled = true
         trackingUserButton?.backgroundColor = .white
         trackingUserButton?.layer.masksToBounds = false
         trackingUserButton?.imageEdgeInsets = UIEdgeInsets(top: 10, left: 8, bottom: 8, right: 10)
@@ -39,6 +38,7 @@ class TrackingUserButton: NSObject {
         trackingUserButton?.rx.tap
             .bind { self.centerMapOnUser() }
          .disposed(by: self.disposeBag)
+        
         self.setTrackingUserButton(trackingUserButton: trackingButtonDelegate)
         self.setTrackingUserViewButton(trackingUserViewButton: trackingButtonViewDelegate)
     }

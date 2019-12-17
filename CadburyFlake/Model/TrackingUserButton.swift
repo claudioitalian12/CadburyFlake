@@ -9,10 +9,12 @@
 import UIKit
 import RxSwift
 
+// MARK: Azioni del bottone
 protocol TrackingButtonDelegate: MapModel {
     func trackingUser()
 }
 
+// MARK: Vista del bottone
 protocol TrackingButtonViewDelegate: MapViewModel {
     func setTrackingUserButton(trackingUserButton: UIButton)
 }

@@ -8,6 +8,7 @@
 
 import MapKit
 
+// MARK: Vista della Mappa
 protocol MapModelViewModelDelegate: MapViewModel {
     func setMapView(mapView: MKMapView)
     func setDetailsView(annotationView: MKAnnotationView)

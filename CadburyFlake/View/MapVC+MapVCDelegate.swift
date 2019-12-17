@@ -11,21 +11,6 @@ import MapKit
 
 extension MapVC: MapVCDelegate {
     
-    func setSettingsViewButton(settingsButton: UIButton) {
-        self.settingButton = settingsButton
-        self.view.addSubview(self.settingButton!)
-    }
-    
-    func setTrackingUserButton(trackingUserButton: UIButton) {
-        self.trackingUserButton = trackingUserButton
-        self.view.addSubview(self.trackingUserButton!)
-    }
-    
-    func setMapView(mapView: MKMapView) {
-        self.mapView = mapView
-        self.view.addSubview(self.mapView!)
-    }
-    
     func createAlertAuthorization(title: String, message: String) {
         let alert = UIAlertController(title: title,
                                       message: message,

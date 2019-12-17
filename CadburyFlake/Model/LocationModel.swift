@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 
+// MARK: Azioni per il location model
 protocol LocationModelDelegate: MapViewModel {
     func createAlertAuthorization(title: String, message: String)
     func permissionAuthorized()

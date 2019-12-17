@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 
+// MARK: Vista del bottone
 protocol SettingsButtonViewDelegate: MapViewModel {
     func setSettingsButtonView(setSettingsButtonView: UIButton)
 }

@@ -13,11 +13,11 @@ import PinLayout
 
 class MapVC: UIViewController {
     
+    private var viewModel: MapViewModel?
     private let disposeBag = DisposeBag()
-    var viewModel: MapViewModel?
-    var mapView: MKMapView?
-    var trackingUserButton: UIButton?
-    var settingButton: UIButton?
+    private var mapView: MKMapView?
+    private var trackingUserButton: UIButton?
+    private var settingButton: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,5 +31,24 @@ class MapVC: UIViewController {
         mapView.pin.all()
         trackingUserButton.pin.width(10%).height(5%).top(20%).right(5%)
         // settingButton.pin.width(10%).height(5%).top(10%).right(5%)
+    }
+    
+    func setViewModel(mapViewModel: MapViewModel) {
+        self.viewModel = mapViewModel
+    }
+    
+    func setSettingsViewButton(settingsButton: UIButton) {
+        self.settingButton = settingsButton
+        self.view.addSubview(self.settingButton!)
+    }
+    
+    func setTrackingUserButton(trackingUserButton: UIButton) {
+        self.trackingUserButton = trackingUserButton
+        self.view.addSubview(self.trackingUserButton!)
+    }
+    
+    func setMapView(mapView: MKMapView) {
+        self.mapView = mapView
+        self.view.addSubview(self.mapView!)
     }
 }

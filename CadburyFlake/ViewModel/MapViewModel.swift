@@ -11,6 +11,7 @@ import MapKit
 import RxSwift
 import RxCocoa
 
+// MARK: Vista del controller
 protocol MapVCDelegate: MapVC {
     func setMapView(mapView: MKMapView)
     func setTrackingUserButton(trackingUserButton: UIButton)
@@ -19,9 +20,11 @@ protocol MapVCDelegate: MapVC {
 }
 
 class MapViewModel: MapModelViewModelDelegate, LocationModelDelegate, TrackingButtonViewDelegate, SettingsButtonViewDelegate {
-       
+    
     let didSettings = PublishSubject<Void>()
-    let disposeBag = DisposeBag()
+    
+    // MARK: Private property
+    private let disposeBag = DisposeBag()
     private var mapModel: MapModel?
     private var locationModel: LocationModel?
     private var trackingUserButton: TrackingUserButton?
@@ -29,6 +32,7 @@ class MapViewModel: MapModelViewModelDelegate, LocationModelDelegate, TrackingBu
     private var setMapView: MapVCDelegate?
     
     init() {
+        
     }
     
     init(viewController: MapVCDelegate) {
@@ -36,10 +40,7 @@ class MapViewModel: MapModelViewModelDelegate, LocationModelDelegate, TrackingBu
         setLocationModel()
     }
     
-     func setTrackingUserButton(trackingUserButton: UIButton) {
-        self.setMapView?.setTrackingUserButton(trackingUserButton: trackingUserButton)
-    }
-    
+    // MARK: Setting private method
     private func setSettingsB() {
         self.settingsButton = SettingsButton(settingsButtonViewDelegate: self)
     }
@@ -56,6 +57,7 @@ class MapViewModel: MapModelViewModelDelegate, LocationModelDelegate, TrackingBu
         self.locationModel = LocationModel(locationModelDelegate: self)
     }
     
+    // MARK: Protocol method
     func setMapView(mapView: MKMapView) {
         self.setMapView!.setMapView(mapView: mapView)
     }
@@ -70,6 +72,10 @@ class MapViewModel: MapModelViewModelDelegate, LocationModelDelegate, TrackingBu
     
     func setSettingsButtonView(setSettingsButtonView: UIButton) {
         self.setMapView!.setSettingsViewButton(settingsButton: setSettingsButtonView)
+    }
+    
+    func setTrackingUserButton(trackingUserButton: UIButton) {
+        self.setMapView?.setTrackingUserButton(trackingUserButton: trackingUserButton)
     }
     
     func permissionAuthorized() {

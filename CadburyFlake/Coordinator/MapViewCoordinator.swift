@@ -14,7 +14,7 @@ class MapViewCoordinator: BaseCoordinator {
     override func start() {
         let viewController = MapVC()
         let mapViewModel = MapViewModel()
-        viewController.viewModel = mapViewModel
+        viewController.setViewModel(mapViewModel: mapViewModel)
         mapViewModel.didSettings
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
